@@ -1,2 +1,3 @@
 rootProject.name = 'Seleniumqamid49'
+include 'artifacts'
 
