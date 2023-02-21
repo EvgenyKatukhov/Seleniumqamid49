@@ -16,19 +16,17 @@ public class DebitCard {
     private WebDriver driver;
 
     @BeforeAll
-    public static void setup() {
-
+    public static void setUpAll() {
         WebDriverManager.chromedriver().setup();
     }
 
     @BeforeEach
-    public void beforeEach() {
+    public void setup() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
-        driver.get("http://localhost:9999");
     }
 
     @AfterEach
@@ -37,10 +35,9 @@ public class DebitCard {
         driver = null;
     }
 
-    @Test
-    // Задача 1.
+    @Test // Задача 1.
     public void shouldSendForm() {
-        driver.get("http://localhost:9999");
+        driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Кузнецова Анастасия");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79109454927");
         driver.findElement(By.cssSelector("[data-test-id=agreement] input")).click();
@@ -51,6 +48,4 @@ public class DebitCard {
         assertEquals("Ваша зявка успешно отправлена! Наш менеджер свяжется с вами с ближайшее время.", actualText);
 
     }
-
-
 }
