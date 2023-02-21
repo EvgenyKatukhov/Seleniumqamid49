@@ -16,11 +16,13 @@ public class DebitCard {
     private WebDriver driver;
 
     @BeforeAll
-            public static void setup() {
+    public static void setup() {
+
         WebDriverManager.chromedriver().setup();
     }
+
     @BeforeEach
-            public void beforeEach() {
+    public void beforeEach() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
@@ -28,12 +30,15 @@ public class DebitCard {
         driver = new ChromeDriver(options);
         driver.get("http://localhost:9999");
     }
+
     @AfterEach
     public void afterEach() {
         driver.quit();
         driver = null;
     }
-    @Test // Задача 1.
+
+    @Test
+    // Задача 1.
     public void shouldSendForm() {
         driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Кузнецова Анастасия");
@@ -41,14 +46,11 @@ public class DebitCard {
         driver.findElement(By.cssSelector("[data-test-id=agreement] input")).click();
         driver.findElement(By.cssSelector("button.button")).click();
 
-        String expectedText = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
-        String actualText = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
+        var actualText = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
 
-        assertEquals(expectedText, actualText);
+        assertEquals("Ваша зявка успешно отправлена! Наш менеджер свяжется с вами с ближайшее время.", actualText);
 
     }
-
-
 
 
 }
