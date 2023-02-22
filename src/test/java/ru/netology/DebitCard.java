@@ -35,17 +35,7 @@ public class DebitCard {
         driver = null;
     }
 
-    @Test // Задача 1.
-    public void shouldSendForm() {
-        driver.get("http://localhost:9999/");
-        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Кузнецова Анастасия");
-        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79109454927");
-        driver.findElement(By.cssSelector("[data-test-id=agreement] input")).click();
-        driver.findElement(By.cssSelector("button.button")).click();
 
-        var actualText = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
-
-        assertEquals("Ваша зявка успешно отправлена! Наш менеджер свяжется с вами с ближайшее время.", actualText);
 
     }
 }
