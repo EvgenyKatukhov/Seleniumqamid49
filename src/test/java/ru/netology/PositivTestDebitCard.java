@@ -33,7 +33,7 @@ public static void setUpAll() {
     driver = null;
 }
 
-@Test //задача 1. Позитивная проверка
+@Test
     public void shouldSendForm() {
     driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Кузнецова Анастасия");
     driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79109454927");
@@ -45,17 +45,7 @@ public static void setUpAll() {
 
     assertEquals(expectedText, actualText);
 }
-@Test //задача 2. Негативная проверка. Пустое поле "телефон"
-    public void shouldEmptyPhoneFiled() {
-    driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Кузнецова Анастасия");
-    driver.findElement(By.className("checkbox__box")).click();
-    driver.findElement(By.className("button")).click();
 
-    String expectedText = "Поле обязательно для заполнения";
-    String actualText = driver.findElement(By.cssSelector("[data-test-id=phone].input_invalid .input__sub")).getText().trim();
-
-    assertEquals(expectedText, actualText);
-}
 
 
 
