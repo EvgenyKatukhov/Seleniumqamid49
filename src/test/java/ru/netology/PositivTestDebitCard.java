@@ -33,7 +33,7 @@ public static void setUpAll() {
     driver = null;
 }
 
-@Test
+@Test //задача 1. Позитивная проверка
     public void shouldSendForm() {
     driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Кузнецова Анастасия");
     driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79109454927");
@@ -44,9 +44,8 @@ public static void setUpAll() {
     String actualText = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
 
     assertEquals(expectedText, actualText);
-
-
 }
+
 
 
 }
